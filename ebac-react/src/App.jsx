@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Perfil from './components/Perfil';
-import Array from './components/Arrays';
+import ReposList from './components/ReposList';
 
-import style from './components/Arrays/ReposList.module.css'
+import style from './components/ReposList/ReposList.module.css'
 
 function App() {
   const [nomeUsuario, setNomeUsuario] = useState('');
@@ -14,7 +14,7 @@ function App() {
       {nomeUsuario.length > 4 && (
         <>
           <Perfil nomeUsuario= {nomeUsuario}/>
-          <Array nomeUsuario={nomeUsuario}/>
+          <ReposList nomeUsuario={nomeUsuario}/>
         </>
       )}
     </>
