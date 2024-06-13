@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-const Array = () => {
+import styles from './ReposList.module.css';
+
+const Array = ({ nomeUsuario }) => {
     const [repos, setRepos] = useState([]);
     const [estaCarregando, setEstaCarregando] = useState(true);
 
     useEffect(() => {
-        fetch('https://api.github.com/users/analiceleite/repos')
+        setEstaCarregando(true);
+        fetch(`https://api.github.com/users/${nomeUsuario}/repos`)
             .then(res => res.json())
             .then(resJson => {
                 setTimeout(() => {
@@ -13,25 +16,34 @@ const Array = () => {
                     setRepos(resJson);
                 }, 3000)
             })
-    }, [])
+    }, [nomeUsuario])
 
     return (
         <>
-            {estaCarregando && (
-                    <h1>Carregando...</h1>
-            )}
-
             <div>
-                <ul>
-                    <li>Repositórios</li> <br />
-                    {repos.map(repositorio => (
-                        <li key={repositorio.id}>
-                            <b>Nome:</b> {repositorio.name} <br />
-                            <b>Linguagem:</b> {repositorio.language} <br />
-                            <a target="_blank" href={repositorio.html_url}>Visitar no Github</a> 
-                        </li>
-                    ))}
-                </ul>
+                {estaCarregando ? (
+                    <h1>Carregando...</h1>
+                ) : (
+                    <div>
+                        <ul className={styles.list}>
+                            {repos.map(repositorio => (
+                                <li className={styles.listItem} key={repositorio.id}>
+                                    <div className={styles.itemName}>
+                                        <b>Nome:</b>
+                                        {repositorio.name}
+                                    </div>
+                                    <div className={styles.itemLanguage}>
+                                        <b>Linguagem:</b>
+                                        {repositorio.language}
+                                    </div>
+
+                                    <a className={styles.itemLink} target="_blank" href={repositorio.html_url}>Visitar no Github</a>
+                                </li>
+                            ))}
+                        </ul>
+
+                    </div>
+                )}
             </div>
         </>
     )

@@ -1,0 +1,48 @@
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+
+    .listItem {
+        list-style: none;
+        padding: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .itemName b, .itemLanguage {
+        margin-right: 8px;
+    }
+
+    .itemLink {
+        border-radius: 8px;
+        display: block;
+        background-color: var(--corTerciaria);
+        color: var(--corSecundaria);
+        text-align: center;
+        font-weight: bold;
+        margin-top: 8px;
+        padding: 8px;
+        text-decoration: none;
+    }
+
+    .itemLink:hover {
+        background-color: var(--corHover);
+    }
+}
+
+.input {
+    border-radius: 8px;
+    padding: 5px;
+    border: 1px solid var(--corPrincipal);
+}
+
+.input:focus {
+    outline: none;
+    border: 1px solid var(--corPrincipal);
+}
+
+.containerInput {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
